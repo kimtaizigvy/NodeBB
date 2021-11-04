@@ -10,6 +10,13 @@ define('forum/account/edit', [
 	'alerts',
 ], function (header, picture, translator, api, hooks, bootbox, alerts) {
 	const AccountEdit = {};
+	$('#deleteAccountBtn').remove();
+	$('.list-group > a').each(function () {
+		const url = $(this).attr('href');
+		if (url.includes('edit/username') || url.includes('edit/email')) {
+			$(this).remove();
+		}
+	});
 
 	AccountEdit.init = function () {
 		header.init();
@@ -26,7 +33,7 @@ define('forum/account/edit', [
 		});
 
 		handleImageChange();
-		handleAccountDelete();
+		// handleAccountDelete();
 		handleEmailConfirm();
 		updateSignature();
 		updateAboutMe();
